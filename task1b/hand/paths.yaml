@@ -1,8 +1,10 @@
 # paths.yaml -- paths are always relative to the task's path,
 # one level above hand/
-#
+# 
 # keys that start with `input_` are dependencies for make
 
-output_task1a: output/task1a.csv
+input_task1b: input/names.csv
+input_from_1a: ../output/task1a.csv
+output_task1b: output/task1b.csv
 
 # done.
