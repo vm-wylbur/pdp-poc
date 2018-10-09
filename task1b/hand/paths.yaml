@@ -1,10 +1,18 @@
 # paths.yaml -- paths are always relative to the task's path,
 # one level above hand/
-# 
+#
 # keys that start with `input_` are dependencies for make
 
+# these are from outside the task:
+#   first a real file:
 input_task1b: input/names.csv
-input_from_1a: ../output/task1a.csv
+#   now an output from an upstream task
+input_from_1a: ../task1a/output/task1a.csv
+
+# this is an internal, intermediate result
+cache_task1b_tmp: cache/task1b_tmp.csv
+
+# this is externally-available, an `interface`
 output_task1b: output/task1b.csv
 
 # done.

@@ -1,4 +1,4 @@
-#!/usr/bin/evn python3
+#!/usr/bin/env python3
 #
 #  Author: PB
 #  Maintainer: PB
