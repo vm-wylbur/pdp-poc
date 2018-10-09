@@ -1,0 +1,6 @@
+# paths.yaml -- paths are always relative to the task's path,
+# one level above hand/
+
+output_task1a: output/task1a.csv
+
+# done.
