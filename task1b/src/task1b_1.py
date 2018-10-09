@@ -10,7 +10,9 @@ import yaml
 import collections
 import pandas as pd
 
-
+# alternatively we could create an hrdag python package
+# with some getpaths code. This package could be in our resource-utils
+# repository, and could be imported pretty easily.
 def getpaths():
     ''' this function will be at the top of every script.
         hand/paths.yaml is a constant for all scripts '''
