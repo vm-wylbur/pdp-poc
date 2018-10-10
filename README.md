@@ -32,5 +32,14 @@ Bring all the dependency management into a single `yaml` file. This file can be 
 
 ## Examples
 
-###
+Read the code in this order:
 
+`task1a/Makefile`
+`task1a/hand/paths.yaml`
+`tasks1a/src/gennums.R`
+`tasks1b/Makefile`
+`tasks1b/hand/paths.yaml`
+`tasks1b/src/task1b_1.py`
+`tasks1b/src/task1b_2.py`
+
+<!--done-->
