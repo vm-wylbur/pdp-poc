@@ -1,6 +1,6 @@
 # Revisiting Principled Data Processing
 
-Patrick Ball
+Patrick Ball<br/>
 2018-10-09
 
 [HRDAG](https://hrdag.org) has dozens of projects spread across more than thirty countries. In order for our team to be able to share work, we need a standard process and directory structure in which to organize all the data and scripts.
