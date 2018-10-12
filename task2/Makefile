@@ -13,7 +13,7 @@
 all: output/task2.csv
 
 clean:
-	rm output/*
+	-rm output/*
 
 
 output/task2.csv: \
@@ -23,7 +23,7 @@ output/task2.csv: \
 	Rscript --no-site-init $< \
 		--arg1a=../task1a/output/task1a.csv \
 		--arg1b=../task1b/output/task1b.csv \
-		--log=output/task2.log \
+		--log output/task2.log \
 		--output=$@
 
 
