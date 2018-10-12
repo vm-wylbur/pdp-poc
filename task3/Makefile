@@ -10,13 +10,13 @@
 #
 .PHONY: all clean
 
-all: output/task3.csv output/task3b.csv
+all: cache/task3.csv  output/task3b.csv
 
 clean:
 	rm output/*
 
 
-output/task3.csv: \
+cache/task3.csv: \
 		src/task3.R  \
 		../task1a/output/task1a.csv \
 		../task1b/output/task1b.csv
@@ -30,10 +30,10 @@ output/task3.csv: \
 output/task3b.csv: \
 		src/task3b.R  \
 		../task1a/output/task1a.csv \
-		../task1b/output/task1b.csv
+		cache/task3.csv
 	Rscript --vanilla $< \
 		--arg1a=../task1a/output/task1a.csv \
-		--arg2=../task2/output/task2.csv \
+		--arg3=cache/task3.csv \
 		--log=output/task3b.log \
 		--output=$@
 
