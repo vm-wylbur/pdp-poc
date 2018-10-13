@@ -18,7 +18,7 @@ output/nlsy.csv: \
 		src/import.py \
 		input/NLSY-97-ht-wt.xlsx
 	python $< \
-		--input=input/NY-97-ht-wt.xlsx \
+		--input=input/NLSY-97-ht-wt.xlsx \
 		--output=$@
 
 # done.
