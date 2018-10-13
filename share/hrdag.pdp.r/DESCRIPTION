@@ -1,0 +1,18 @@
+Package: hrdag.pdp.r
+Type: Package
+Title: Helper scripts for HRDAG's Principled Data Processing
+Version: 0.1.0
+Author: Patrick Ball
+Maintainer: <pball@hrdag.org>
+Description: These functions enable auditing and simplify setup for use
+    with HRDAG's Principled Data Processing approach.
+License: (c) HRDAG 2018 GPL-2
+Encoding: UTF-8
+LazyData: true
+Imports:
+  argparse,
+  tools,
+  rstudioapi,
+  tidyverse
+
+
