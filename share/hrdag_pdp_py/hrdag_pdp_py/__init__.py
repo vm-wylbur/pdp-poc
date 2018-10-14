@@ -10,7 +10,19 @@
 # -----------------------------------------------------------
 #
 
-def chkargs(args, parser, addlog=True):
-    # compare command line args with parser defaults
+
+def chkargs(args, parser):
+    ''' compare default args to passed args, fail if not equal '''
+    actions = parser.__dict__['_option_string_actions']
+    for actionname, action in actions.items():
+        if not actionname.startswith('--') or actionname == '--help':
+            continue
+        actionname = actionname[2:]
+        passedaction = vars(args)[actionname]
+
+        msg = (f"argument={actionname}: default={action.default}"
+               f" != passed={passedaction}, failing.")
+        assert action.default == passedaction, msg
+    return True
 
 # done.
