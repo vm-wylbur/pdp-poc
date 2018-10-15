@@ -28,7 +28,7 @@ get_args <- function() {
 args <- get_args()
 print(str(args))
 
-# sink(args$log)
+sink(args$log)
 
 nlsy <- read_delim(args$input, delim="|", col_types=cols()) %>%
   mutate_at(vars(age, height, weight), funs(ifelse( . < 0, NA, .))) %>%
