@@ -15,3 +15,5 @@ Imports:
   rstudioapi,
   tidyverse
 RoxygenNote: 6.1.0
+Suggests: testthat
+

@@ -10,6 +10,10 @@
 #
 #
 # -----------------------------------------------------------
+# library(argparse)
+# library(tidyverse)
+# library(rstudioapi)
+# library(tools)
 
 .get_running_name <- function() {
   #' returns name of current script
@@ -20,8 +24,8 @@
     cmdArgs = commandArgs(trailingOnly = FALSE)
     needle <- '--file='
     fname <- grep(needle, cmdArgs, value=TRUE)
-    print(fname)
   }
+  fname = tools::file_path_as_absolute(fname)
   if (length(fname) > 0) {
     fname <- basename(fname)
     return(tools::file_path_sans_ext(basename(fname)))
@@ -40,9 +44,10 @@
   #'
   # note that argparse would complain if the number of args passed .!= number defined.
   for (line in python_code) {
-    key <- str_sub(str_extract(line, '--[^,]+'), 3, -2)
+    key <- stringr::str_sub(stringr::str_extract(line, '--[^,]+'), 3, -2)
     if (is.na(key)) next
-    pth <- str_sub(str_extract(line, 'default=[\'"].*[\'"]'), 10, -2)
+    regex_patt <- 'default=[\'"].*[\'"]'
+    pth <- stringr::str_sub(stringr::str_extract(line, regex_patt), 10, -2)
     stopifnot(args[[key]] == pth)
   }
   return(TRUE)

@@ -1,1 +1,4 @@
 exportPattern("^[[:alpha:]]+")
+#' @importFrom stringr str_sub
+#' @importFrom stringr str_extract
+#' @importFrom stringr str_glue
