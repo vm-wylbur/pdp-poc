@@ -28,10 +28,16 @@ get_args <- function() {
 args <- get_args()
 print(str(args))
 
-sink(args$log)
+# sink(args$log)
 
-nlsy <- read_delim(args$input, delim="|", col_types=cols())
+nlsy <- read_delim(args$input, delim="|", col_types=cols()) %>%
+  mutate_at(vars(age, height, weight), funs(ifelse( . < 0, NA, .))) %>%
+  mutate_at(vars(Sex, `self-perception`), funs(as_factor)) %>%
+  rename(`self-perception` = 'perception')
 
+print(summary(nlsy$age))
+print(summary(nlsy$weight))
+print(summary(nlsy$height))
 glimpse(nlsy)
 
 saveRDS(nlsy, args$output)

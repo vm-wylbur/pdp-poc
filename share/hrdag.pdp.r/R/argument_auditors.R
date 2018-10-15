@@ -10,10 +10,6 @@
 #
 #
 # -----------------------------------------------------------
-# library(argparse)
-# library(tidyverse)
-# library(rstudioapi)
-# library(tools)
 
 .get_running_name <- function() {
   #' returns name of current script

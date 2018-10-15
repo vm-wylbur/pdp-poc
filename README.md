@@ -28,15 +28,28 @@ A task does some reasonably small chunk of work. For example, a task might hold 
 ## Special directories
 * `src/__cache__/`
 
+## Installation
+
+explain installing python `share/hrdag_pdp_py` package and the `share/hrdag.pdp.r` R package. Maybe add script for the installation.
+
 
 ## changes from earlier work
 
 * no symlinks
-* less emphasison `input/` directory
+* less emphasis on `input/` directory
 * `Makefile` now at the task level
 * re-emphasis on command line arguments in Makefile
+* new `src/__cache__` and `cache/` directories
+* no more `knitr`: new tool for magic numbers in LaTeX, enables TeXShop use
+
+## Library code
+
+* python and R library code for `getargs()`, `chkargs()`, check that all non-output arguments are dependencies; extractions of tasks and LaTeX `src/` dirs to share with non-pdp-using colleagues.
 
 
+# open thoughts
+
+_move to `doc/` dir_
 
 Recently we've been struggling to find ways to include collaborators who a
 
