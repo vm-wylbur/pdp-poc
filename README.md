@@ -1,9 +1,42 @@
 # Revisiting Principled Data Processing
 
 Patrick Ball<br/>
-2018-10-09
+2018-10-14
 
 [HRDAG](https://hrdag.org) has dozens of projects spread across more than thirty countries. In order for our team to be able to share work, we need a standard process and directory structure in which to organize all the data and scripts.
+
+These repositories include code used to audit and organize work
+
+# The logic of principled data processing
+
+The fundamental unit of our work is a **task**. A task is a directory containing a `Makefile` with at least one subdirectory -- `src/`. There are many other files and directories that the task might contain, but a task _must_ contain a `Makefile` and a `src/` directory.
+
+A task does some reasonably small chunk of work. For example, a task might hold files share by a partner, and perhaps transform those files into a more usable format. Tasks that hold files contributed by partners are called `import`, the code to do the importing is in `import/src/`, the files themselves are stored in `import/input/`, and the execution of the task is described in `import/Makefile`. In the example in this repository, the `import/` task exemplifies this pattern.
+
+
+
+
+## Directories in a task
+
+* `output/`
+* `input/`
+* `cache/`
+* `hand/`
+* `frozen/`
+* `doc/`
+
+## Special directories
+* `src/__cache__/`
+
+
+## changes from earlier work
+
+* no symlinks
+* less emphasison `input/` directory
+* `Makefile` now at the task level
+* re-emphasis on command line arguments in Makefile
+
+
 
 Recently we've been struggling to find ways to include collaborators who a
 
@@ -22,24 +55,19 @@ In the post-hoc check scenario, it's essential that anyone in the team should be
 * _auditability_: each task should produce transformations from inputs to outputs that can be easily tested.
 * _scalability_: the structure should be usable by many simultaneous analysts; support many languages; include many datasets (each of which may have many updates
 * _reproducible_: Results in documents should be technically traceable backward through every calculation.
+* _openness_: work should be shareable with colleagues who do not use our approach.
+
+
 
 ## Critiques:
 * symlinks are not cross-platform accessible. They break when passing through windows (<v10) and through file stores like Dropbox and Box.com
 * Path and dependency handling is always messy.
 
-## Proposal
-Bring all the dependency management into a single `yaml` file. This file can be used to generate dependencies for make as well as provide paths (by key name) for scripts. This eliminates symlinks from the workflow.
 
 ## Examples
 
 Read the code in this order:
 ```
-task1a/Makefile
-task1a/hand/paths.yaml
-tasks1a/src/gennums.R
-tasks1b/Makefile
-tasks1b/hand/paths.yaml
-tasks1b/src/task1b_1.py
-tasks1b/src/task1b_2.py
+examples here
 ```
 <!--done-->
