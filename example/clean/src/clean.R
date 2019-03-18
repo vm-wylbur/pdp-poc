@@ -2,45 +2,36 @@
 #
 # Author: PB
 # Maintainer(s): PB
-# License: (c) HRDAG 2018, GPL v2 or newer
+# License: (c) HRDAG 2019, GPL v2 or newer
 #
-# hrdag/pdp-poc/clean/src/clean.R
+# hrdag/pdp-poc/example/clean/src/clean.R
 #
 # -----------------------------------------------------------
 
-require(argparse)
-require(hrdag.pdp.r)  # for chkargs
-require(tidyverse)
+require(pacman)
+p_load(here, tidyverse, janitor)
 
+sink(here('example/clean/output/clean.log'))
 
-get_args <- function() {
-  parser <- ArgumentParser()
-  parser$add_argument("--input", default="../import/output/nlsy.csv")
-  parser$add_argument("--output", default="output/nlsy.rds")
-  args <- parser$parse_args()
-  args$log <- ('output/clean.log')
-  args <- chkargs(args, parser)
-  return(args)
-}
+args <- list(wtprobs = here('example/clean/hand/wt-probs.csv'),
+             input = here('example/clean/input/nlsy.csv'),
+             output = here('example/clean/output/nlsy.rds'))
 
+perception_probs <- read_delim(args$wtprobs, delim='|', comment="#")
 
-#---main-----
-args <- get_args()
-print(str(args))
+nlsy <- read_delim(args$input, delim="|") %>% 
+   clean_names() %>% 
+   filter(weight > 0) %>% filter(height > 0) %>% 
+   mutate(age = if_else(age < 0, NA_integer_, age)) %>% 
+   left_join(perception_probs)  %>% 
+   mutate(prob = if_else(is.na(prob), .75, prob)) %>% 
+   mutate(wt = runif(n=nrow(.))) %>% 
+   mutate(obsd = prob > wt) %>% 
+   select(sex, age, height, weight, obsd) %>% 
+   glimpse()
 
-sink(args$log)
-
-nlsy <- read_delim(args$input, delim="|", col_types=cols()) %>%
-  mutate_at(vars(age, height, weight), funs(ifelse( . < 0, NA, .))) %>%
-  mutate_at(vars(Sex, `self-perception`), funs(as_factor)) %>%
-  rename(`self-perception` = 'perception')
-
-print(summary(nlsy$age))
-print(summary(nlsy$weight))
-print(summary(nlsy$height))
-glimpse(nlsy)
-
+rm(perception_probs)
 saveRDS(nlsy, args$output)
 sink()
-print('done.')
-# done.
+
+# done. 

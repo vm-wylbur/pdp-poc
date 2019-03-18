@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+#
+# Author: PB
+# Maintainer(s): PB
+# License: (c) HRDAG 2019, GPL v2 or newer
+#
+# hrdag/pdp-poc/example/clean/hand/wt-probs.csv
+#
+# -----------------------------------------------------------
+#
+self_perception|prob
+About the right weight|0.9
+Slightly overweight|0.2
+Slightly underweight|1.0
+Very overweight|0.0
+Very underweight|1.0
+# done.
