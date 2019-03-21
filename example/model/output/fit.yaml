@@ -1,0 +1,2 @@
+model1: weight = -148 + 4.2*height
+model2: weight = -165.1 + 4.7*height
